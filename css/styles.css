@@ -1,0 +1,677 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline-style: none
+    /*box-sizing: border-box;*/
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-size: 1.125em;
+    font-family: 'Asap', sans-serif;
+    background: rgb(26, 26, 26);
+    /*animation: nuit 3s ease-in-out infinite;*/
+}
+@keyframes nuit {
+    0% {background:  rgb(26, 26, 26);}
+    25% {background:  rgb(46, 46, 46);}
+    50% {background:  rgb(66, 66, 66);}
+    75% {background:  rgb(46, 46, 46);}
+    100% {background:  rgb(26, 26, 26);}
+}
+
+
+/* conteneur global */
+
+/*div#wrapper {
+    position: relative;
+    width: 80%;
+    height: 100%;
+}*/
+
+canvas#stars {
+    position: fixed;
+    top: 10px;
+    left: 450px;
+} 
+canvas#circl {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Partie contenu  */
+
+.part-a {
+    margin: 6em 0 0;
+    padding: 1em 1.3em;
+    font-size: 1.3em;
+    width: 490px;
+    border-radius: 0 25px 25px 0;
+    background: rgba(68, 68, 67, 0.3);
+    box-shadow: 1px 1px 6px rgb(204, 204, 204);
+}
+
+.part-a h1 {
+    color: rgb(124, 124, 124);
+}
+.part-a h2 {
+    color: rgb(189, 189, 189);
+}
+
+.part-a > p {
+    position: relative;
+    margin: 1.1em 0;    
+    font-size: 0.9em;
+    color: rgb(233, 233, 233);
+}
+.part-a a {
+    display: inline-block;
+    text-decoration: none;
+    color: yellow;
+    padding: 0.4em 0.8em;
+    background: rgb(36, 36, 36);
+    border-radius: 8px;
+    border: 2px solid black;
+    box-shadow: inset 1px 1px 2px rgb(204, 204, 204);
+    /*box-shadow: 1px 1px 1px rgb(117, 114, 114);*/
+}
+.part-a a:hover {
+    color: white;
+    background: rgb(51, 51, 51);
+    box-shadow: inset -1px -1px 2px rgb(146, 145, 145);
+}
+    
+.part-a .icon {
+    position: absolute;
+    margin: 0 1.2em 0 0;
+    top: 35%;
+    left: -20px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgb(255, 94, 0);
+}
+
+.part-a span.h {
+    color: rgb(30, 238, 221);
+}
+.part-a span.c {
+    color: rgb(207, 238, 30);
+}
+.part-a span.j {
+    color: rgb(137, 30, 238);
+}
+
+.part-b {
+    margin: 1em 0 0;
+    padding: 1em 1.3em 9em 1.3em;
+    font-size: 1.3em;
+    width: 450px;
+    border-radius: 0 25px 25px 0;
+    background: rgba(77, 78, 77, 0.6);
+}
+.part-b h2 {
+    color: rgb(124, 124, 124);
+}
+.part-b h3 {
+    color: rgb(189, 189, 189);
+}
+
+.part-b > p {
+    position: relative;
+    margin: 1.1em 0;    
+    font-size: 0.9em;
+    color: rgb(233, 233, 233);
+}
+.part-b .icon-y {
+    position: absolute;
+    margin: 0 1.2em 0 0;
+    top: 30%;
+    left: -20px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgb(251, 255, 0);
+}
+/*  top et left viewport : barres colorées et mouvantes */
+
+div#barre-a {
+    border-radius: 0 0 15px 15px;
+    position: fixed;
+    top: 0;
+    left: 50px;
+    width: 20px;
+    height: 120px;
+    background:rgb(95, 4, 91);
+    animation: anim-barre-a 1s linear infinite;
+}
+div#barre-b {
+    border-radius: 0 0 15px 15px;
+    position: fixed;
+    top: 0;
+    left: 73px;
+    width: 20px;
+    height: 120px;
+    background:rgb(252, 217, 19);
+    animation: anim-barre-c 1s linear infinite;
+}
+div#barre-c {
+    border-radius: 0 0 15px 15px;
+    position: fixed;
+    top: 0;
+    left: 96px;
+    width: 20px;
+    height: 120px;
+    background:rgb(19, 166, 252);
+    animation: anim-barre-b 1s linear infinite;
+}
+div#barre-d {
+    border-radius: 0 0 15px 15px;
+    position: fixed;
+    top: 0;
+    left: 119px;
+    width: 20px;
+    height: 120px;
+    background:rgb(46, 252, 19);
+    animation: anim-barre-a 1s linear infinite;
+}
+
+@keyframes anim-barre-a {
+    0% {
+        transform-origin: top left;
+        transform: scale(1, 0.2);
+        }
+    25% {
+        transform-origin: top left;
+        transform: scale(1, 1); 
+        }
+    50% {
+        transform-origin: top left;
+        transform: scale(1, 0.9);
+        }
+    75% {
+            transform-origin: top left;
+            transform: scale(1, 0.1);
+        }
+    90% {
+            transform-origin: top left;
+            transform: scale(1, 0.8);
+        }
+    100% {
+            transform-origin: top left;
+            transform: scale(1, 0.4);
+         }
+}
+
+@keyframes anim-barre-b {
+    0% {
+        transform-origin: top left;
+        transform: scale(1, 0.7);
+        }
+    25% {
+        transform-origin: top left;
+        transform: scale(1, 0.5); 
+        }
+    50% {
+        transform-origin: top left;
+        transform: scale(1, 0.9);
+        }
+    75% {
+            transform-origin: top left;
+            transform: scale(1, 0.1);
+        }
+    90% {
+            transform-origin: top left;
+            transform: scale(1, 0.8);
+        }
+    100% {
+            transform-origin: top left;
+            transform: scale(1, 0.5);
+         }
+}
+
+@keyframes anim-barre-c {
+    0% {
+        transform-origin: top left;
+        transform: scale(1, 0.1);
+        }
+    25% {
+        transform-origin: top left;
+        transform: scale(1, 0.5); 
+        }
+    50% {
+        transform-origin: top left;
+        transform: scale(1, 0.7);
+        }
+    75% {
+            transform-origin: top left;
+            transform: scale(1, 0.6);
+        }
+    90% {
+            transform-origin: top left;
+            transform: scale(1, 1);
+        }
+    100% {
+            transform-origin: top left;
+            transform: scale(1, 0.8);
+         }
+}
+
+/*  top et right viewport : nuages */
+
+div#nuage-a {
+    position: fixed;
+    top: -50px;
+    right: -50px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: purple;
+    z-index: 15;
+    /*animation: anim-barre-a 1s alternate-reverse linear infinite;*/
+}
+
+div#nuage-b {
+    position: fixed;
+    top: -30px;
+    right: 50px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: rgb(252, 217, 19);
+    z-index: 10;
+    animation: anim-barre-a 3s alternate-reverse linear infinite;
+}
+
+div#nuage-c {
+    position: fixed;
+    top: -55px;
+    right: 140px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: turquoise;
+    z-index: 5;
+    /*animation: anim-barre-a 700ms linear infinite;*/
+}
+
+/* bottom et left viewport : nuages */
+
+div#nuage-d {
+    position: fixed;
+    bottom: -50px;
+    left: -50px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: purple;
+    z-index: 15;
+    box-shadow: 5px 5px 8px rgb(117, 114, 114);
+    /*animation: anim-barre-a 1s alternate-reverse linear infinite;*/
+}
+
+div#nuage-e {
+    position: fixed;
+    bottom: -45px;
+    left: 50px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: rgb(252, 217, 19);
+    z-index: 10;
+    box-shadow: 5px 5px 8px rgb(117, 114, 114);
+    /*animation: anim-barre-a 3s alternate-reverse linear infinite;*/   
+}
+
+div#nuage-f {
+    position: fixed;
+    bottom: -55px;
+    left: 140px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgb(46, 252, 19);
+    z-index: 5;
+    box-shadow: 5px 5px 8px rgb(117, 114, 114);
+    /*animation: anim-barre-a 700ms linear infinite;*/
+}
+
+div#nuage-g {
+    position: fixed;
+    bottom: 50px;
+    left: -50px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: turquoise;
+    z-index: 10;
+    box-shadow: 5px 5px 8px rgb(117, 114, 114);
+    /*  animation: anim-barre-a 3s alternate-reverse linear infinite;*/   
+}
+
+div#nuage-h {
+    position: fixed;
+    bottom: 125px;
+    left: -45px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgb(252, 143, 19);
+    z-index: 5;
+    box-shadow: 5px 5px 8px rgb(117, 114, 114);
+    /*animation: anim-barre-a 700ms linear infinite;*/
+}
+
+/* immeubles : big, medium, small */
+
+.imm-b {
+    position: fixed;
+    bottom: 40px;
+    right: 270px;
+    width: 190px;
+    height: 290px;
+    background: rgb(80, 80, 80);
+    border-radius: 5px 5px 0 0;
+    z-index: 5;
+}
+
+.imm-m {
+    position: fixed;
+    bottom: 70px;
+    right: 550px;
+    width: 130px;
+    height: 200px;
+    background: rgb(63, 63, 63);
+    border-radius: 5px 5px 0 0;
+    z-index: 5;
+}
+.imm-s {
+    position: fixed;
+    bottom: 90px;
+    right: 95px;
+    width: 100px;
+    height: 180px;
+    background: rgb(41, 41, 41);
+    border-radius: 5px 5px 0 0;
+    z-index: 5;
+}
+
+/* immeuble big : fenêtres :  */
+
+.window-a-b {
+    position: fixed;
+    bottom: 260px;
+    right: 310px;
+    width: 15px;
+    height: 23px;
+    background:rgba(235, 231, 29, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+    animation: windo-b 1.5s ease-in-out infinite;
+}
+
+.window-b-b {
+    position: fixed;
+    bottom: 230px;
+    right: 360px;
+    width: 15px;
+    height: 23px;
+    background:rgba(235, 231, 29, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+    animation: windo-b 1s ease-in-out infinite;
+}
+
+.window-c-b {
+    position: fixed;
+    bottom: 260px;
+    right: 410px;
+    width: 15px;
+    height: 23px;
+    background:rgba(235, 231, 29, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+    animation: windo-b 800ms ease-in-out infinite;    
+} 
+
+.window-d-b {
+    position: fixed;
+    bottom: 200px;
+    right: 310px;
+    width: 15px;
+    height: 23px;
+    background:rgba(235, 231, 29, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+    animation: windo-b 1.8s ease-in-out infinite;
+}
+.window-e-b {
+    position: fixed;
+    bottom: 170px;
+    right: 360px;
+    width: 15px;
+    height: 23px;
+    background:rgba(235, 231, 29, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+}
+.window-f-b {
+    position: fixed;
+    bottom: 200px;
+    right: 410px;
+    width: 15px;
+    height: 23px;
+    background:rgba(235, 231, 29, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+    animation: windo-b 900ms ease-in-out infinite;
+}   
+
+@keyframes windo-b {
+    0% {background:  rgba(235, 231, 29, 0.5);}
+    25% {background: rgba(235, 231, 29, 0.2);}
+    50% {background:  rrgba(235, 231, 29, 1);}
+    75% {background:  rgba(235, 231, 29, 0.2);}
+    100% {background:  rgba(235, 231, 29, 0.5);}
+}
+
+/* immeuble big : fenêtres :  */
+
+.porte-b {
+    position: fixed;
+    bottom: 40px;
+    right: 370px;
+    width: 25px;
+    height: 40px;
+    background:rgba(170, 37, 32, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+}
+
+/*  immeubles big  : toit :  */
+
+.toit-a-b {
+    position: fixed;
+    bottom: 319px;
+    right: 250px;
+    width: 230px;
+    height:50px;
+    background: rgb(82, 26, 26);
+    transform-origin: top 50%;
+    transform: rotate(-5deg);
+    border-radius: 15px 15px 0 0;
+    z-index: 10;
+}
+
+/*  immeubles medium : fenêtres :  */
+
+.window-a-m {
+    position: fixed;
+    bottom: 220px;
+    right: 630px;
+    width: 12px;
+    height: 14px;
+    background:rgba(235, 187, 29, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+    animation: windo-m 900ms ease-in-out infinite;
+}   
+
+.window-b-m {
+    position: fixed;
+    bottom: 180px;
+    right: 600px;
+    width: 12px;
+    height: 14px;
+    background:rgba(235, 187, 29, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+    animation: windo-m 2s ease-in-out infinite;
+}
+
+.window-c-m {
+    position: fixed;
+    bottom: 130px;
+    right: 630px;
+    width: 12px;
+    height: 14px;
+    background:rgba(235, 187, 29, 0.5);
+    border-radius: 2px 2px 0 0;
+    z-index: 10;
+    animation: windo-m 1s ease-in-out infinite;
+}
+
+@keyframes windo-m {
+    0% {background:  rgba(235, 187, 29, 0.5);}
+    25% {background: rgba(235, 187, 29, 0.2);}
+    50% {background:  rrgba(235, 187, 29, 1);}
+    75% {background:  rgba(235, 187, 29, 0.2);}
+    100% {background:  rgba(235, 187, 29, 0.5);}
+}
+
+/*  immeubles medium  : toit :  */
+
+.toit-a-m {
+    position: fixed;
+    bottom: 220px;
+    right: 560px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: rgb(31, 97, 91);
+    z-index: 1;
+}
+
+/*  immeubles medium  : porte :  */
+
+.porte-m {
+    position: fixed;
+    bottom: 70px;
+    right: 580px;
+    width: 18px;
+    height: 28px;
+    background: rgb(31, 97, 91);
+    z-index: 10;
+}
+
+.window-a-s {
+    position: fixed;
+    bottom: 230px;
+    right: 160px;
+    width: 8px;
+    height: 11px;
+    background: rgba(233, 204, 76, 0.6);
+    z-index: 10;
+}
+.window-b-s {
+    position: fixed;
+    bottom: 195px;
+    right: 160px;
+    width: 8px;
+    height: 11px;
+    background: rgba(233, 204, 76, 0.6);
+    z-index: 10;
+    animation: windo-m 1s ease-in-out infinite;
+}
+.window-c-s {
+    position: fixed;
+    bottom: 160px;
+    right: 160px;
+    width: 8px;
+    height: 11px;
+    background: rgba(233, 204, 76, 0.6);
+    z-index: 10;
+    animation: windo-m 700ms ease-in-out infinite;
+}
+.window-d-s {
+    position: fixed;
+    bottom: 210px;
+    right: 125px;
+    width: 8px;
+    height: 11px;
+    background: rgba(233, 204, 76, 0.6);
+    z-index: 10;
+    animation: windo-m 4s ease-in-out infinite;
+}
+.window-e-s {
+    position: fixed;
+    bottom: 175px;
+    right: 125px;
+    width: 8px;
+    height: 11px;
+    background: rgba(233, 204, 76, 0.6);
+    z-index: 10;
+    animation: windo-m 2s ease-in-out infinite;
+}
+
+/*  immeubles small  : toit :  */
+
+.toit-a-s {
+    position: fixed;
+    bottom: 260px;
+    right: 85px;
+    width: 120px;
+    height: 25px;
+    background: rgb(146, 95, 36);
+    transform-origin: top 50%;
+    transform: rotate(5deg);
+    border-radius: 10px 0 10px 0;
+    z-index: 10;
+}
+
+.porte-s {
+    position: fixed;
+    bottom: 90px;
+    right: 125px;
+    width: 12px;
+    height: 20px;
+    background: rgba(146, 95, 36, 0.7);
+    z-index: 10;
+    
+}
+
+
+
+/* sols, sous les immeubles :  */
+
+.sol-a {
+    position: fixed;
+    bottom: -580px;
+    right: -30px;
+    width: 810px;
+    height: 810px;
+    border-radius: 50%;
+    background: rgb(15, 15, 15);
+    z-index: 1;
+}
+
+
+
+
+
+

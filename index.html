@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Pierre CASTAING - Web développeur</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet"> 
+    <link href="./css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+        <audio src="./audio/jingle.mp3" autoplay volume="0.5"></audio>
+
+        <canvas id="stars"></canvas>
+        <canvas id="circl"></canvas>
+
+        <!-- Partie contenu  -->
+
+        <div class="part-a">
+        <h1>Pierre Castaing</h1>
+        <h2>Web développeur</h2>
+        <p><span class="icon"></span>Je parle couramment - mais avec l'accent béarnais - le <span class="h">html</span>, le <span class="c">css3</span> et le <span class="j">javascript</span>.</p>
+        <p><span class="icon"></span>J'aime investir mon temps et mes compétences professionnelles dans des projets qui sortent des sentiers battus.</p>
+        <p><span class="icon"></span>Je travaille en freelance utilisant les outils modernes de développement collaboratifs (github, etc...).</p>
+        <p><a href="#" onclick="action()" title="pluie de cercles">Enjoy !</a></p>
+        </div>
+        
+        <div class="part-b">
+            <h2>Compétences :</h2>
+        <h3>Web développement</h3>
+        <p>Framework css/javascript :</p>
+        <p><span class="icon-y"></span>Bootstrap</p>
+        <p><span class="icon-y"></span>Materialize</p>
+        <p>API :</p>
+        <p><span class="icon-y"></span>Canvas</p>
+        <p><span class="icon-y"></span>SVG</p>
+        <p>Runtime environnement :</p>
+        <p><span class="icon-y"></span>Angular / Node.js</p>
+        </div>
+
+        <!-- elements : fixed -->
+        <!-- top et left viewport : barres colorées et mouvantes -->
+
+        <div id="barre-a"></div>
+        <div id="barre-b"></div>
+        <div id="barre-c"></div>
+        <div id="barre-d"></div>
+
+        <!-- top et right viewport : nuages -->
+
+        <div id="nuage-a"></div>
+        <div id="nuage-b"></div>
+        <div id="nuage-c"></div>
+
+        <!-- bottom et left viewport : nuages -->
+
+        <div id="nuage-d"></div>
+        <div id="nuage-e"></div>
+        <div id="nuage-f"></div>
+        <div id="nuage-g"></div>
+        <div id="nuage-h"></div>
+
+        <!-- immeubles :  -->
+
+        <div class="imm-b"></div>
+        <div class="imm-m"></div>
+        <div class="imm-s"></div>
+
+        <!--  immeubles big : fenêtres :  -->
+
+        <div class="window-a-b"></div>
+        <div class="window-b-b"></div>
+        <div class="window-c-b"></div>
+        <div class="window-d-b"></div>
+        <div class="window-e-b"></div>
+        <div class="window-f-b"></div>
+
+        <!--  immeubles big  : porte :  -->
+
+        <div class="porte-b"></div>
+
+        <!--  immeubles big  : toit :  -->
+
+        <div class="toit-a-b"></div>
+
+        <!--  immeubles medium : fenêtres :  -->
+
+        <div class="window-a-m"></div>
+        <div class="window-b-m"></div>
+        <div class="window-c-m"></div>
+
+        <!--  immeubles medium  : toit :  -->
+
+        <div class="toit-a-m"></div>
+
+        <!--  immeubles medium  : porte :  -->
+
+        <div class="porte-m"></div>
+
+        <!--  immeubles small : fenêtres :  -->
+
+        <div class="window-a-s"></div>
+        <div class="window-b-s"></div>
+        <div class="window-c-s"></div>
+        <div class="window-d-s"></div>
+        <div class="window-e-s"></div>
+
+        <!--  immeubles small  : toit :  -->
+
+        <div class="toit-a-s"></div>
+
+         <!--  immeubles small  : porte :  -->
+
+         <div class="porte-s"></div>
+
+        <!-- sols, sous les immeubles :  -->
+
+        <div class="sol-a"></div>
+        <div class="sol-b"></div>
+        <div class="sol-c"></div>
+
+        <script>
+
+            var myCanva = document.getElementById('stars');
+            myCanva.width = 860;
+            myCanva.height = 450;
+            ctxs = myCanva.getContext('2d');
+            
+            function etoile(x, y, radius) {
+                    this.x = x;
+                    this.y = y;
+                    this.radius = radius;
+            
+                   // var color = Math.random() > 0.5 ? "green" : Math.random() > 0.5 ? "purple" : "yellow";
+            
+                    this.design = function () {
+                        ctxs.beginPath();
+                        ctxs.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                        ctxs.closePath();
+                        ctxs.fillStyle = Math.random() > 0.5 ? "yellow" : Math.random() > 0.5 ? "whitesmoke" : "white";
+                        ctxs.fill();
+                    }
+            
+                    this.mouve = function () {
+                        this.design();
+                    }
+            }
+            var etoileTab = [];
+            for (var i = 0; i < 65; i++) {
+                    var x = Math.random() * 860;
+                    var y = Math.random() * 450;
+                    var radius = 2;
+            
+                    etoileTab.push (new etoile(x, y, radius));
+            }
+            
+            function go() {
+                requestAnimationFrame(go);
+                ctxs.clearRect(0, 0, window.innerWidth, window.innerHeight);
+                for (var i = 0; c = etoileTab.length, i < c; i++) {
+                    // console.log(etoileTab[i]);
+                    etoileTab[i].mouve();
+                }
+            }
+            // setInterval(go, 2000);
+          go(); 
+
+            // cercle ::
+            var myCanvas = document.getElementById('circl');
+            myCanvas.width = window.innerWidth - 15;
+            myCanvas.height = window.innerHeight- 15;
+            ctx = myCanvas.getContext('2d');
+
+            function cercle(x, y, dx, dy, radius) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
+            this.radius = radius;
+
+       // var color = Math.random() > 0.5 ? "green" : Math.random() > 0.5 ? "purple" : "yellow";
+
+        this.dessin = function () {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            ctx.closePath();
+            ctx.strokeStyle = "black";
+            ctx.fillStyle = Math.random() > 0.5 ? "blue" : Math.random() > 0.5 ? "yellow" : "red";
+            ctx.stroke();
+            ctx.fill();
+        }
+
+        this.move = function () {
+            //console.log('action');
+            this.dessin();
+
+            if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
+	            this.dx = -this.dx;
+            }
+            if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
+	            this.dy = -this.dy;
+            }
+	        this.x += this.dx;
+	        this.y += this.dy;
+        
+        }
+}
+var cercleTab = [];
+for (var i = 0; i < 80; i++) {
+        var x = Math.random() * window.innerWidth - 15;
+        var y = Math.random() * window.innerHeight- 15;
+        var dx = (Math.random() - 0.5);
+        var dy = (Math.random() - 0.5);
+        var radius = 20;
+
+        cercleTab.push (new cercle(x, y, dx, dy, radius));
+}
+// console.log(cercleTab);
+
+function action() {
+    requestAnimationFrame(action);
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    for (var i = 0; c = cercleTab.length, i < c; i++) {
+        // console.log(cercleTab[i]);
+        cercleTab[i].move();
+    }
+}
+//setInterval(action, 2000);
+// action();
+
+            </script>
+</body>
+</html>
